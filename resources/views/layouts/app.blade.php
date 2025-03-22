@@ -18,6 +18,7 @@
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
+            <div class="pt-16 md:ml-56">
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-white shadow">
@@ -27,10 +28,13 @@
                 </header>
             @endisset
 
+            
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
+            </div>
         </div>
     </body>
 </html>
