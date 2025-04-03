@@ -7,6 +7,24 @@
             'icon'  => 'lucide-house',
             'route' => 'dashboard',
             'match' => 'dashboard',
+        ],
+        [
+            'title' => 'Wellbeing & Engagement',
+            'icon'  => 'lucide-sun',
+            'route' => 'wellbeings.index',
+            'match' => 'wellbeings.index',
+        ],
+        [
+            'title' => 'Pengembangan Diri & Karir',
+            'icon'  => 'lucide-graduation-cap',
+            'route' => 'wellbeings.index',
+            'match' => 'wellbeings.index',
+        ],
+        [
+            'title' => 'Feedback',
+            'icon'  => 'lucide-mail',
+            'route' => 'wellbeings.index',
+            'match' => 'wellbeings.index',
         ]
     ]));
 ?>

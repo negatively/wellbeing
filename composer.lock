@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "754d20feb057964c3e717021fc575f93",
+    "content-hash": "0223b6ca87ac13a598f93627dbd455ed",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -1134,6 +1134,75 @@
                 }
             ],
             "time": "2025-02-03T10:55:03+00:00"
+        },
+        {
+            "name": "ibex/crud-generator",
+            "version": "v2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/awais-vteams/laravel-crud-generator.git",
+                "reference": "2e35e77a84cacd0f61c52a9e070a7fdc874f404f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/awais-vteams/laravel-crud-generator/zipball/2e35e77a84cacd0f61c52a9e070a7fdc874f404f",
+                "reference": "2e35e77a84cacd0f61c52a9e070a7fdc874f404f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^10.30|^11.44|^12.2",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ibex\\CrudGenerator\\CrudServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ibex\\CrudGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "M Awais",
+                    "email": "asargodha@gmail.com"
+                }
+            ],
+            "description": "Laravel CRUD Generator",
+            "keywords": [
+                "alpine js",
+                "bootstrap css",
+                "crud",
+                "crud generator",
+                "laravel",
+                "laravel crud generator",
+                "laravel package",
+                "livewire",
+                "tailwind css"
+            ],
+            "support": {
+                "issues": "https://github.com/awais-vteams/laravel-crud-generator/issues",
+                "source": "https://github.com/awais-vteams/laravel-crud-generator/tree/v2.1.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/awais-vteams",
+                    "type": "github"
+                },
+                {
+                    "url": "https://ko-fi.com/mawais",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2025-03-23T06:44:38+00:00"
         },
         {
             "name": "laravel/framework",
