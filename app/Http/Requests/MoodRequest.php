@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class WellbeingRequest extends FormRequest
+class MoodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,6 @@ class WellbeingRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'date' => 'required',
 			'emotion' => 'required|array',
 			'mood' => 'required',
 			'mood_description' => 'required|string',

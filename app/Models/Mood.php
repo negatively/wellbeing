@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Wellbeing
+ * Class Mood
  *
  * @property $id
  * @property $user_id
@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Wellbeing extends Model
+class Mood extends Model
 {
     
     protected $perPage = 20;
@@ -44,19 +44,6 @@ class Wellbeing extends Model
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
-    }
-
-    // Helper method to get mood text
-    public function getMoodTextAttribute()
-    {
-        return match ($this->mood) {
-            1 => 'Sangat Buruk',
-            2 => 'Agak Buruk',
-            3 => 'Okay',
-            4 => 'Cukup Bagus',
-            5 => 'Luar Biasa',
-            default => 'Unknown'
-        };
     }
     
 }

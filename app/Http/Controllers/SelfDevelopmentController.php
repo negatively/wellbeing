@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class WellbeingController extends Controller
+class SelfDevelopmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): View
     {
-        return view('wellbeing.index');
+        return view('self-development.index');
     }
 
 

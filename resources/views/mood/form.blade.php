@@ -1,35 +1,28 @@
-<div class="space-y-6">
-    
-    <div>
-        <x-input-label for="date" :value="__('Tanggal')"/>
-        <x-text-input id="date" name="date" type="date" class="mt-1 block w-full" :value="old('date', $wellbeing?->date)" autocomplete="date" placeholder="Date"/>
-        <x-input-error class="mt-2" :messages="$errors->get('date')"/>
-    </div>
+@php
+    $moodOptions = [
+        1 => ['text' => 'Sangat Buruk', 'icon' => 'lucide-angry', 'bg' => 'fill-red-300', 'text-color' => 'text-red-600'],
+        2 => ['text' => 'Agak Buruk', 'icon' => 'lucide-frown', 'bg' => 'fill-purple-300', 'text-color' => 'text-purple-600'],
+        3 => ['text' => 'Okay', 'icon' => 'lucide-meh', 'bg' => 'fill-blue-300', 'text-color' => 'text-blue-600'],
+        4 => ['text' => 'Cukup Bagus', 'icon' => 'lucide-smile', 'bg' => 'fill-cyan-300', 'text-color' => 'text-cyan-600'],
+        5 => ['text' => 'Luar Biasa', 'icon' => 'lucide-laugh', 'bg' => 'fill-green-300', 'text-color' => 'text-green-600']
+    ];
+@endphp
 
+<div class="space-y-8">
     <div>
         <x-input-label for="mood" :value="__('Bagaimana perasaanmu hari ini?')" class="text-lg font-medium mb-4" />
         
-        <div class="flex justify-left space-x-4">
-            @php
-                $moodOptions = [
-                    1 => ['text' => 'Sangat Buruk', 'icon' => 'lucide-angry', 'bg' => 'bg-red-300', 'text-color' => 'text-red-600'],
-                    2 => ['text' => 'Agak Buruk', 'icon' => 'lucide-frown', 'bg' => 'bg-purple-300', 'text-color' => 'text-purple-600'],
-                    3 => ['text' => 'Okay', 'icon' => 'lucide-meh', 'bg' => 'bg-blue-300', 'text-color' => 'text-blue-600'],
-                    4 => ['text' => 'Cukup Bagus', 'icon' => 'lucide-smile', 'bg' => 'bg-cyan-300', 'text-color' => 'text-cyan-600'],
-                    5 => ['text' => 'Luar Biasa', 'icon' => 'lucide-laugh', 'bg' => 'bg-green-300', 'text-color' => 'text-green-600']
-                ];
-            @endphp
-            
+        <div class="flex justify-left space-x-4">            
             @foreach($moodOptions as $value => $option)
             <label class="flex flex-col items-center cursor-pointer">
                 <input type="radio" name="mood" value="{{ $value }}" class="hidden peer" required
-                    {{ (old('mood', $wellbeing?->mood) == $value) ? 'checked' : '' }}>
-                <div class="w-16 h-16 rounded-full {{ $option['bg'] }} flex items-center justify-center peer-checked:ring-4 peer-checked:ring-blue-400">
+                    {{ (old('mood', $mood?->mood) == $value) ? 'checked' : '' }}>
+                <div class="w-16 h-16 rounded-full flex items-center justify-center peer-checked:ring-4 peer-checked:ring-blue-400">
                 
                     <x-dynamic-component
                         :component="$option['icon']"
-                        class="w-10 h-10"
-                        stroke-width="1.5"
+                        class="w-16 h-16 {{$option['bg']}}"
+                        stroke-width="1"
                     />
                 </div>
                 <span class="mt-2 text-sm text-center">{{ $option['text'] }}</span>
@@ -52,7 +45,7 @@
                 'anxious', 'unhappy', 'excited', 'relieved', 'eager', 'sad', 'self-conscious', 'panicked', 'egoistical',
                 'motivated', 'bored', 'annoyed', 'happy', 'lonely', 'engaged', 'jealous', 'ecstatic'
             ];
-            $selectedEmotions = old('emotion', $wellbeing?->emotions ?? []);
+            $selectedEmotions = old('emotion', $mood?->emotions ?? []);
             @endphp
             
             @foreach ($emotions as $emotion)
@@ -69,7 +62,7 @@
 
     <div>
         <x-input-label for="mood_description" :value="__('Mood Description')"/>
-        <x-text-input id="mood_description" name="mood_description" type="text" class="mt-1 block w-full" :value="old('mood_description', $wellbeing?->mood_description)" autocomplete="mood_description" placeholder="Mood Description"/>
+        <x-text-input id="mood_description" name="mood_description" type="text" class="mt-1 block w-full" :value="old('mood_description', $mood?->mood_description)" autocomplete="mood_description" placeholder="Mood Description"/>
         <x-input-error class="mt-2" :messages="$errors->get('mood_description')"/>
     </div>
 
