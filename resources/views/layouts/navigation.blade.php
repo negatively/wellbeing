@@ -1,32 +1,34 @@
 <?php
-    use App\Enums\RoleEnum;
+use App\Enums\RoleEnum;
 
-    $menus = json_decode(json_encode([
+$menus = json_decode(
+    json_encode([
         [
             'title' => 'Dashboard',
-            'icon'  => 'lucide-house',
+            'icon' => 'lucide-house',
             'route' => 'dashboard',
             'match' => 'dashboard',
         ],
         [
             'title' => 'Wellbeing & Engagement',
-            'icon'  => 'lucide-sun',
+            'icon' => 'lucide-sun',
             'route' => 'wellbeings.index',
             'match' => 'wellbeings.index',
         ],
         [
             'title' => 'Pengembangan Diri & Karir',
-            'icon'  => 'lucide-graduation-cap',
+            'icon' => 'lucide-graduation-cap',
             'route' => 'self_developments.index',
             'match' => 'self_developments.index',
         ],
         [
             'title' => 'Feedback',
-            'icon'  => 'lucide-mail',
+            'icon' => 'lucide-mail',
             'route' => 'wellbeings.index',
             'match' => 'wellbeings.index',
-        ]
-    ]));
+        ],
+    ]),
+);
 ?>
 
 <nav x-data="{ open: false }" class="fixed top-0 z-10 w-full border-b border-gray-200 bg-white shadow-md">
@@ -36,8 +38,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex shrink-0 items-center">
-                    <a href="{{ route('dashboard') }}">
-                        Dashboard
+                    <a href="{{ route('dashboard') }}" class="font-black text-purple-500 text-xl">
+                        WELLBEING APP
                     </a>
                 </div>
 
@@ -47,12 +49,16 @@
             <div class="hidden sm:ms-6 sm:items-center md:flex">
                 <x-dropdown-menu align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
+                        <button
+                            class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
                             <div>{{ Auth::user()->name }} ({{ strtoupper(Auth::user()->roles[0]->name) }})</div>
 
                             <div class="ms-1">
-                                <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
                                 </svg>
                             </div>
                         </button>
@@ -68,7 +74,7 @@
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                                onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -79,12 +85,14 @@
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center md:hidden">
-                <button
-                    @click="open = ! open"
+                <button @click="open = ! open"
                     class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                        <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -96,32 +104,24 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 justify-between">
 
-                @foreach( $menus as $menu )
-                    
-                        <a
-                            href="{{ route($menu->route) }}"
-                            class="flex flex-col items-center justify-center px-6 hover:bg-gray-100"
-                        >
-                            <x-dynamic-component
-                                :component="$menu->icon"
-                                class="w-5 h-5 {{ request()->routeIs($menu->match) ? 'text-primary' : 'text-gray-500 group-hover:text-primary' }}"
-                            />
-                        </a>
-              
+                @foreach ($menus as $menu)
+                    <a href="{{ route($menu->route) }}"
+                        class="flex flex-col items-center justify-center px-6 hover:bg-gray-100">
+                        <x-dynamic-component :component="$menu->icon"
+                            class="w-5 h-5 {{ request()->routeIs($menu->match) ? 'text-primary' : 'text-gray-500 group-hover:text-primary' }}" />
+                    </a>
                 @endforeach
 
             </div>
         </div>
     </div>
 
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden md:hidden">
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden md:hidden">
         <div class="space-y-1 pb-3 pt-2">
-            @foreach( $menus as $menu )
-            
-                    <x-responsive-nav-link :href="route($menu->route)" :active="request()->routeIs($menu->match)">
-                        {{ $menu->title }}
-                    </x-responsive-nav-link>
-      
+            @foreach ($menus as $menu)
+                <x-responsive-nav-link :href="route($menu->route)" :active="request()->routeIs($menu->match)">
+                    {{ $menu->title }}
+                </x-responsive-nav-link>
             @endforeach
         </div>
 
@@ -142,7 +142,7 @@
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                        onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
@@ -152,23 +152,19 @@
     </div>
 </nav>
 
-<aside id="logo-sidebar" class="fixed left-0 top-0 z-20 mt-16 h-screen w-56 -translate-x-full border-r border-gray-200 bg-white pt-2 transition-transform md:translate-x-0" aria-label="Sidebar">
+<aside id="logo-sidebar"
+    class="fixed left-0 top-0 z-20 mt-16 h-screen w-56 -translate-x-full border-r border-gray-200 bg-white pt-2 transition-transform md:translate-x-0"
+    aria-label="Sidebar">
     <div class="h-full overflow-y-auto bg-white pb-4">
-       <ul class="space-y-2 font-medium">
+        <ul class="space-y-2 font-medium">
 
-            @foreach( $menus as $menu )
-               
-                    <li>
-                        <x-side-link
-                            :href="route($menu->route)"
-                            :active="request()->routeIs($menu->match)"
-                            :icon="$menu->icon"
-                        >
-                            {{ $menu->title }}
-                        </x-side-link>
-                    </li>
-             
+            @foreach ($menus as $menu)
+                <li>
+                    <x-side-link :href="route($menu->route)" :active="request()->routeIs($menu->match)" :icon="$menu->icon">
+                        {{ $menu->title }}
+                    </x-side-link>
+                </li>
             @endforeach
-       </ul>
+        </ul>
     </div>
 </aside>

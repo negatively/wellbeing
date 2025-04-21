@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LifeBalanceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WellbeingController;
@@ -22,9 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('wellbeings', WellbeingController::class)->only('index');
     Route::resource('moods', MoodController::class);
+    Route::resource('life-balances', LifeBalanceController::class);
     Route::resource('self_developments', SelfDevelopmentController::class)->only('index');
-
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

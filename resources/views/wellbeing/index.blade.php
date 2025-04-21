@@ -18,7 +18,7 @@
 
                 <!-- Life Balance Button -->
                 <div class="text-center">
-                    <a href="#" class="inline-block">
+                    <a href="{{ route('life-balances.index') }}" class="inline-block">
                         <div class="w-16 h-16 rounded-2xl bg-red-400 flex items-center justify-center mb-2">
                             <x-lucide-scale class="h-8 w-8 text-white" />
                         </div>
